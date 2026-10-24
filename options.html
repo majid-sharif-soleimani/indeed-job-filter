@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Indeed AI Job Filter – Settings</title>
+<style>
+  body { font: 14px/1.5 system-ui, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; color: #222; }
+  h1 { font-size: 20px; }
+  label { display: block; font-weight: 600; margin-top: 16px; }
+  .hint { font-weight: 400; color: #666; font-size: 12px; }
+  input[type=text], input[type=password], input[type=number], select, textarea { width: 100%; box-sizing: border-box; padding: 6px 8px; font: inherit; border: 1px solid #bbb; border-radius: 6px; }
+  textarea { min-height: 140px; font-family: ui-monospace, monospace; font-size: 12px; }
+  #resume { min-height: 260px; }
+  .row { display: flex; gap: 16px; } .row > div { flex: 1; }
+  button { margin-top: 20px; padding: 8px 16px; font: inherit; border-radius: 6px; border: 1px solid #0a66c2; background: #0a66c2; color: #fff; cursor: pointer; }
+  button.secondary { background: #fff; color: #0a66c2; }
+  #msg { margin-left: 12px; }
+</style>
+</head>
+<body>
+<h1>Indeed AI Job Filter – Settings</h1>
+
+<div class="row">
+  <div>
+    <label>AI provider
+      <select id="provider">
+        <option value="anthropic">Claude (Anthropic)</option>
+        <option value="openai">OpenAI</option>
+        <option value="gemini">Google Gemini</option>
+        <option value="typesafe">TypeSafe Jev (TypeSafe, OpenRouter or Vercel AI Gateway key)</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label>Model <span class="hint">(any model name your key can use)</span>
+      <input type="text" id="model">
+    </label>
+  </div>
+</div>
+
+<label>API key for the selected provider <span class="hint">(stored only in this browser)</span>
+  <input type="password" id="apiKey" autocomplete="off">
+</label>
+
+<div class="row">
+  <div>
+    <label>Minimum score to keep a job (0–100)
+      <input type="number" id="threshold" min="0" max="100">
+    </label>
+  </div>
+  <div>
+    <label>Pause between jobs (seconds)
+      <input type="number" id="delaySec" min="0" max="30" step="0.5">
+    </label>
+  </div>
+</div>
+
+<label><input type="checkbox" id="bookmarkMatches"> Bookmark suitable jobs <span class="hint">(press Indeed's 🔖 "Save job" on jobs that pass; already-saved jobs are left alone)</span></label>
+
+<label>Not-suitable keywords <span class="hint">(comma separated, case-insensitive, searched in title, company and location; a match marks the job as not suitable without asking the AI. Spaces are kept and matter: <code>Java</code> also matches "JavaScript", <code> Java </code> matches only the word Java. Note that a space after a comma becomes part of the next keyword)</span>
+  <textarea id="blockKeywords" style="min-height:60px" placeholder="Junior,Intern ,Embedded,Göteborg"></textarea>
+</label>
+
+<label>Commutable locations <span class="hint">(comma separated; a job located anywhere else is marked not suitable unless it is Remote — no AI call. Leave empty to disable)</span>
+  <textarea id="commuteLocations" style="min-height:60px" placeholder="e.g. Berlin, Potsdam, Brandenburg"></textarea>
+</label>
+
+<label>Commutable postal codes <span class="hint">(optional; first 3 digits, ranges allowed, e.g. <code>100-199, 740-764</code>. If a job location has a 5-digit postal code, only this list decides)</span>
+  <input type="text" id="commutePostalRanges" placeholder="e.g. 100-199, 740-764">
+</label>
+
+<label>Hard criteria <span class="hint">(a job that clearly breaks one of these is marked not suitable)</span>
+  <textarea id="criteria" placeholder="HARD RULES (a job that clearly breaks any of these must be rejected):
+- Target roles: backend developer, mid or senior level; tech lead is fine.
+- Reject: junior, intern, trainee and non-engineering roles.
+- Location: &lt;your city&gt; or commutable places; elsewhere only if fully remote.
+- Language: &lt;language&gt; must NOT be required.
+
+TECHNOLOGY (not a hard rule):
+- &lt;your stack&gt; is the best fit, but only explicitly required technologies are real gaps.
+
+SCORING: 75+ Strong · 55–74 Transition · 40–54 Weak · below 40 Gap
+REASON: start with [Strong], [Transition], [Weak] or [Gap].
+
+See the guide in settings.js for a full example."></textarea>
+</label>
+
+<label>Resume <span class="hint">(paste plain text, or load a .txt / .md file)</span>
+  <input type="file" id="resumeFile" accept=".txt,.md,text/plain">
+  <textarea id="resume" placeholder="Paste your resume here…"></textarea>
+</label>
+
+<button id="save">Save</button>
+<button id="test" class="secondary">Save &amp; test API</button>
+<span id="msg"></span>
+
+<script src="settings.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

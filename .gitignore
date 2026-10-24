@@ -1,0 +1,14 @@
+# Never commit personal data or secrets
+*.env
+.env*
+*secret*
+*apikey*
+*api-key*
+*resume*
+*Resume*
+*cv*.pdf
+*profile*.txt
+*Profile*.txt
+settings-export*.json
+node_modules/
+.DS_Store

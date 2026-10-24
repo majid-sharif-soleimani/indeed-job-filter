@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Indeed Job Filter (AI)",
+  "version": "1.5.1",
+  "description": "Opens each job on an Indeed results page, scores it against your resume with AI, bookmarks the ones that fit and marks the rest (never dislikes).",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Filter Indeed jobs on this page (click again to stop)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*.indeed.com/*",
+    "https://api.anthropic.com/*",
+    "https://api.openai.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.typesafe.ai/*",
+    "https://openrouter.ai/*",
+    "https://ai-gateway.vercel.sh/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.indeed.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
