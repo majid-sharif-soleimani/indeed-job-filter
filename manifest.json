@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Indeed Job Filter (AI)",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Opens each job on an Indeed results page, scores it against your resume with AI, bookmarks the ones that fit and marks the rest (never dislikes).",
   "icons": {
     "16": "icons/icon16.png",

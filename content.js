@@ -408,7 +408,11 @@
 
         const card = findCard(jobId);
         if (!card) continue;
-        if (isDismissed(card, jobId) || isApplied(card)) {
+        // Skip jobs already disliked, applied to, or already bookmarked ("Save job" pressed)
+        const saveBtn = findSaveButton(card);
+        if (isDismissed(card, jobId) || isApplied(card) || (saveBtn && isSaved(saveBtn))) {
+          if (saveBtn && isSaved(saveBtn) && !isApplied(card) && !isDismissed(card, jobId))
+            badge(card, { score: 0, label: "🔖 Saved (skipped)", reason: "Already saved, not checked again" }, true, jobId);
           stats.skipped++;
           ui.stats(stats, dryRun);
           continue;
@@ -694,7 +698,7 @@
     }
     function stats(s, dry) {
       if (statsEl)
-        statsEl.textContent = `Match: ${s.match} (🔖 saved now: ${s.saved || 0}) · Not suitable (AI): ${s.dismissed} · by keyword: ${s.keyword || 0} · by location: ${s.location || 0} · Skipped (disliked/applied): ${s.skipped} · Errors: ${s.errors}`;
+        statsEl.textContent = `Match: ${s.match} (🔖 saved now: ${s.saved || 0}) · Not suitable (AI): ${s.dismissed} · by keyword: ${s.keyword || 0} · by location: ${s.location || 0} · Skipped (disliked/applied/saved): ${s.skipped} · Errors: ${s.errors}`;
     }
     const history = [];
     function log(head, detail, kind) {

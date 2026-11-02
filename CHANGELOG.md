@@ -2,6 +2,10 @@
 
 All notable changes. Newest first. Versions match `manifest.json` → `version`.
 
+## [1.5.2] - 2026-11-02
+### Changed
+- **Already saved jobs are skipped** (not opened, not sent to the AI), like applied and dismissed jobs. Detected from the bookmark button (`aria-pressed="true"`); `🔖 Saved (skipped)` badge.
+
 ## [1.5.1] - 2026-10-24
 First public release.
 
