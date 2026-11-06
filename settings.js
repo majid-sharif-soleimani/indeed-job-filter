@@ -7,6 +7,9 @@
 //   - Target roles: backend or full-stack developer, mid or senior level; tech lead is fine.
 //   - Reject: junior, intern, trainee roles; non-engineering roles (sales, HR, support...).
 //   - Location: <your city> or places commutable from it; elsewhere only if fully remote.
+//   - Remote jobs: acceptable only if the ad explicitly hires from <your country>, or from anywhere /
+//     anywhere in <your region> (e.g. "remote within the EU"). Remote limited to another country, or not saying
+//     where candidates may live, must be rejected.
 //   - Language: <language> must NOT be required; the working language should be English.
 //
 //   TECHNOLOGY (not a hard rule):

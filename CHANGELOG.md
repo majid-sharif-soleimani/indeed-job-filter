@@ -2,6 +2,10 @@
 
 All notable changes. Newest first. Versions match `manifest.json` → `version`.
 
+## [1.5.3] - 2026-11-06
+### Docs
+- Criteria guide in `settings.js`: example "Remote jobs" rule (remote only counts if the ad hires from your country or from anywhere / your region).
+
 ## [1.5.2] - 2026-11-02
 ### Changed
 - **Already saved jobs are skipped** (not opened, not sent to the AI), like applied and dismissed jobs. Detected from the bookmark button (`aria-pressed="true"`); `🔖 Saved (skipped)` badge.
